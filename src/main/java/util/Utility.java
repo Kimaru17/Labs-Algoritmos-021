@@ -1,5 +1,6 @@
 package util;
 
+import domain.Course;
 import domain.SinglyLinkedList;
 import domain.Student;
 
@@ -77,6 +78,11 @@ public class Utility {
                 return st1.getId().compareTo(st2.getId()) < 0 ? -1
                         :  st1.getId().compareTo(st2.getId()) > 0 ? 1 : 0;
 
+            case "Course":
+                Course course1 = (Course) a; Course course2 = (Course) b;
+                return course1.getId().compareTo(course2.getId()) < 0 ? -1
+                        : course1.getId().compareTo(course2.getId()) > 0 ? 1 : 0;
+
         }
         return 2; //Unknown
     }
@@ -86,6 +92,7 @@ public class Utility {
         if(a instanceof String && b instanceof String) return "String";
         if(a instanceof Character && b instanceof Character) return "Character";
         if(a instanceof Student && b instanceof Student) return "Student";
+        if(a instanceof Course && b instanceof Course) return "Course";
         return "Unknown";
     }
 }
