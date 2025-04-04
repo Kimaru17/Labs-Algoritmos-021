@@ -31,7 +31,7 @@
                 <TextField fx:id="tf_credits" layoutX="271.0" layoutY="277.0" prefHeight="38.0" prefWidth="61.0" />
                 <Pane layoutY="489.0" prefHeight="102.0" prefWidth="749.0" style="-fx-background-color: #76c497;">
                     <children>
-                        <Button layoutX="139.0" layoutY="14.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="57.0" prefWidth="114.0" text="Add">
+                        <Button layoutX="139.0" layoutY="14.0" mnemonicParsing="false" onAction="#addFirstOnAction" prefHeight="57.0" prefWidth="114.0" text="Add">
                             <font>
                                 <Font name="System Bold" size="18.0" />
                             </font>

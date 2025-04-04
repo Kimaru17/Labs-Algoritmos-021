@@ -1,6 +1,8 @@
 package controller;
 
+import domain.DoublyLinkedList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
@@ -25,9 +27,15 @@ public class RegisterController
     private TableColumn courseNameTableColumn;
     @javafx.fxml.FXML
     private BorderPane bp;
+    //defino la lista enlazada interna
+    private DoublyLinkedList registerList;
+    private Alert alert; //para el manejo de alertas
 
     @javafx.fxml.FXML
     public void initialize() {
+        //cargamos la lista general
+        this.registerList = util.Utility.getRegisterList();
+        alert = util.FXUtility.alert("Register List", "Display Register");
     }
 
     @Deprecated

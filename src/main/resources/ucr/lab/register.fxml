@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<BorderPane fx:id="bp"
-            xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.RegisterController"
-            prefHeight="400.0" prefWidth="600.0">
+
+<BorderPane fx:id="bp" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #23c3ff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterController">
     <center>
         <AnchorPane prefHeight="615.0" prefWidth="804.0">
             <children>
-                <Pane layoutX="16.0" prefHeight="86.0" prefWidth="761.0" style="-fx-background-color: #fe6962;">
+                <Pane layoutX="-1.0" prefHeight="86.0" prefWidth="802.0" style="-fx-background-color: #fe6962;">
                     <children>
-                        <Label layoutX="90.0" layoutY="20.0" text="Course Registration List (Doubly Linked List)">
+                        <Label layoutX="74.0" layoutY="25.0" text="Course Registration List (Doubly Linked List)">
                             <font>
-                                <Font name="Arial" size="40.0" />
+                                <Font name="Arial" size="31.0" />
                             </font>
                         </Label>
                     </children>
@@ -28,18 +27,18 @@
                     <children>
                         <TableView fx:id="courseRegistrationTableview" layoutX="15.0" layoutY="14.0" prefHeight="350.0" prefWidth="761.0">
                             <columns>
-                                <TableColumn fx:id="idTableColumn" prefWidth="115.19995498657227" text="Id" />
-                                <TableColumn fx:id="dateTableColumn" prefWidth="349.7999725341797" text="Date" />
-                                <TableColumn fx:id="studentNameTableColumn" prefWidth="349.7999725341797" text="Student Name" />
-                                <TableColumn fx:id="studentIdTableColumn" prefWidth="349.7999725341797" text="Student Id" />
-                                <TableColumn fx:id="courseIdTableColumn" prefWidth="349.7999725341797" text="Course Id" />
-                                <TableColumn fx:id="courseNameTableColumn" prefWidth="272.800048828125" text="Course Name" />
-                                <TableColumn fx:id="creditsTableColumn" prefWidth="272.800048828125" text="Credits" />
+                                <TableColumn fx:id="idTableColumn" prefWidth="39.999969482421875" text="Id" />
+                                <TableColumn fx:id="dateTableColumn" prefWidth="96.79999160766602" text="Date" />
+                                <TableColumn fx:id="studentIdTableColumn" prefWidth="83.2000732421875" text="Student Id" />
+                                <TableColumn fx:id="studentNameTableColumn" prefWidth="124.79991149902344" text="Student Name" />
+                                <TableColumn fx:id="courseIdTableColumn" prefWidth="91.20001220703125" text="Course Id" />
+                                <TableColumn fx:id="courseNameTableColumn" prefWidth="228.0" text="Course Name" />
+                                <TableColumn fx:id="creditsTableColumn" prefWidth="95.39996337890625" text="Credits" />
                             </columns>
                         </TableView>
                     </children>
                 </Pane>
-                <Pane layoutX="19.0" layoutY="462.0" prefHeight="153.0" prefWidth="761.0">
+                <Pane layoutX="-1.0" layoutY="462.0" prefHeight="154.0" prefWidth="802.0" style="-fx-background-color: #76c497;">
                     <children>
                         <ButtonBar layoutX="1.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="761.0">
                             <buttons>

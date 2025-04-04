@@ -1,6 +1,8 @@
 package controller;
 
+import domain.SinglyLinkedList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
@@ -11,9 +13,14 @@ public class StudentContainsController
     private TextField tf_studentId;
     @javafx.fxml.FXML
     private BorderPane bp;
+    private SinglyLinkedList studentList;
+    private Alert alert; //para el manejo de alertas
 
     @javafx.fxml.FXML
     public void initialize() {
+        //cargamos la lista general
+        this.studentList = util.Utility.getStudentList();
+        alert = util.FXUtility.alert("Student List", "Contains Student");
     }
 
     @javafx.fxml.FXML

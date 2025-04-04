@@ -1,6 +1,8 @@
 package controller;
 
+import domain.SinglyLinkedList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
@@ -11,9 +13,15 @@ public class StudentRemoveController
     private TextField tf_studentId;
     @javafx.fxml.FXML
     private BorderPane bp;
+    //lista enlazada interna
+    private SinglyLinkedList studentList;
+    private Alert alert; //para el manejo de alertas
 
     @javafx.fxml.FXML
     public void initialize() {
+        //cargamos la lista general
+        this.studentList = util.Utility.getStudentList();
+        alert = util.FXUtility.alert("Student List", "Remove Student");
     }
 
     @javafx.fxml.FXML

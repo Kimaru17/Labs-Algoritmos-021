@@ -1,6 +1,9 @@
 package controller;
 
+import domain.DoublyLinkedList;
+import domain.SinglyLinkedList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
@@ -17,9 +20,15 @@ public class CourseController
     private TableView courseTableview;
     @javafx.fxml.FXML
     private BorderPane bp;
+    //defino la lista enlazada interna
+    private DoublyLinkedList courseList;
+    private Alert alert; //para el manejo de alertas
 
     @javafx.fxml.FXML
     public void initialize() {
+        //cargamos la lista general
+        this.courseList = util.Utility.getCourseList();
+        alert = util.FXUtility.alert("Course List", "Display Course");
     }
 
     @javafx.fxml.FXML

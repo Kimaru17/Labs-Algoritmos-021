@@ -1,6 +1,8 @@
 package controller;
 
+import domain.DoublyLinkedList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
@@ -10,9 +12,15 @@ public class CourseContainsController
     private TextField tf_courseId;
     @javafx.fxml.FXML
     private BorderPane bp;
+    //defino la lista enlazada interna
+    private DoublyLinkedList courseList;
+    private Alert alert; //para el manejo de alertas
 
     @javafx.fxml.FXML
     public void initialize() {
+        //cargamos la lista general
+        this.courseList = util.Utility.getCourseList();
+        alert = util.FXUtility.alert("Course List", "Contains Course");
     }
 
     @javafx.fxml.FXML

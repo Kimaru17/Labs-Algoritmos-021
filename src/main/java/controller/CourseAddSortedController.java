@@ -1,6 +1,8 @@
 package controller;
 
+import domain.DoublyLinkedList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
@@ -14,12 +16,18 @@ public class CourseAddSortedController
     private TextField tf_credits;
     @javafx.fxml.FXML
     private BorderPane bp;
+    //defino la lista enlazada interna
+    private DoublyLinkedList courseList;
+    private Alert alert; //para el manejo de alertas
 
     @javafx.fxml.FXML
     public void initialize() {
+        //cargamos la lista general
+        this.courseList = util.Utility.getCourseList();
+        alert = util.FXUtility.alert("Course List", "Add Sorted Course");
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void addOnAction(ActionEvent actionEvent) {
     }
 
@@ -33,5 +41,9 @@ public class CourseAddSortedController
     @javafx.fxml.FXML
     public void closeOnAction(ActionEvent actionEvent) {
         util.FXUtility.loadPage("ucr.lab.HelloApplication", "course.fxml", bp);
+    }
+
+    @javafx.fxml.FXML
+    public void addSortedOnAction(ActionEvent actionEvent) {
     }
 }

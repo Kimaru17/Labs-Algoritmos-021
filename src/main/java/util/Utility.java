@@ -1,5 +1,6 @@
 package util;
 
+import domain.DoublyLinkedList;
 import domain.SinglyLinkedList;
 import domain.Student;
 
@@ -8,23 +9,32 @@ import java.util.Random;
 
 public class Utility {
     private static final Random random;
-    private static SinglyLinkedList studentList;
+        private static SinglyLinkedList studentList;
+        private static DoublyLinkedList courseList;
+        private static DoublyLinkedList registerList;
 
-    //constructor estatico, inicializador estatico
-    static {
-        // semilla para el random
-        long seed = System.currentTimeMillis();
-        random = new Random(seed);
-        studentList = new SinglyLinkedList();
-    }
-
-    public static SinglyLinkedList getStudentList() {
-        return studentList;
-    }
-
-    public static void setStudentList(SinglyLinkedList studentList) {
-        Utility.studentList = studentList;
-    }
+        //constructor estatico, inicializador estatico
+        static {
+            // semilla para el random
+            long seed = System.currentTimeMillis();
+            random = new Random(seed);
+            studentList = new SinglyLinkedList();
+            courseList = new DoublyLinkedList();
+            registerList = new DoublyLinkedList();
+        }
+        //student singly list getter and setter
+        public static SinglyLinkedList getStudentList() {
+            return studentList;
+        }
+        public static void setStudentList(SinglyLinkedList studentList) {
+            Utility.studentList = studentList;
+        }
+        //course doubly list getter and setter
+        public static DoublyLinkedList getCourseList() {return courseList;}
+        public static void setCourseList(DoublyLinkedList courseList) {Utility.courseList = courseList;}
+        //register doubly list getter and setter
+        public static DoublyLinkedList getRegisterList() {return registerList;}
+        public static void setRegisterList(DoublyLinkedList registerList) {Utility.registerList = registerList;}
 
     public static int random(int bound){
         //return (int)Math.floor(Math.random()*bound); //forma 1
