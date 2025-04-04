@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.BorderPane;
 
 public class RegisterController
 {
@@ -22,6 +23,8 @@ public class RegisterController
     private TableView courseRegistrationTableview;
     @javafx.fxml.FXML
     private TableColumn courseNameTableColumn;
+    @javafx.fxml.FXML
+    private BorderPane bp;
 
     @javafx.fxml.FXML
     public void initialize() {
@@ -37,10 +40,12 @@ public class RegisterController
 
     @javafx.fxml.FXML
     public void removeOnAction(ActionEvent actionEvent) {
+        util.FXUtility.loadPage("ucr.lab.HelloApplication", "registerRemove.fxml", bp);
     }
 
     @javafx.fxml.FXML
     public void addOnAction(ActionEvent actionEvent) {
+        util.FXUtility.loadPage("ucr.lab.HelloApplication", "registerAdd.fxml", bp);
     }
 
     @Deprecated
@@ -61,6 +66,7 @@ public class RegisterController
 
     @javafx.fxml.FXML
     public void containsOnAction(ActionEvent actionEvent) {
+        util.FXUtility.loadPage("ucr.lab.HelloApplication", "registerContains.fxml", bp);
     }
 
     @javafx.fxml.FXML

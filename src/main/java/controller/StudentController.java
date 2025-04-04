@@ -68,6 +68,7 @@ public class StudentController
 
     @javafx.fxml.FXML
     public void containsOnAction(ActionEvent actionEvent) {
+        util.FXUtility.loadPage("ucr.lab.HelloApplication", "studentContains.fxml", bp);
     }
 
     @javafx.fxml.FXML
@@ -76,20 +77,22 @@ public class StudentController
 
     @javafx.fxml.FXML
     public void addOnAction(ActionEvent actionEvent) {
-        util.FXUtility.loadPage("ucr.lab.HelloApplication", "addStudent.fxml", bp);
+        util.FXUtility.loadPage("ucr.lab.HelloApplication", "studentAdd.fxml", bp);
     }
 
     @javafx.fxml.FXML
     public void addFirstOnAction(ActionEvent actionEvent) {
-        util.FXUtility.loadPage("ucr.lab.HelloApplication", "addFirstStudent.fxml", bp);
+        util.FXUtility.loadPage("ucr.lab.HelloApplication", "studentAddFirst.fxml", bp);
     }
 
     @javafx.fxml.FXML
     public void removeOnAction(ActionEvent actionEvent) {
+        util.FXUtility.loadPage("ucr.lab.HelloApplication", "studentRemove.fxml", bp);
     }
 
     @javafx.fxml.FXML
     public void addSortedOnAction(ActionEvent actionEvent) {
+        util.FXUtility.loadPage("ucr.lab.HelloApplication", "studentAddSorted.fxml", bp);
     }
 
     @javafx.fxml.FXML

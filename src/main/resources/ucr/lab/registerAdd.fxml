@@ -7,10 +7,11 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Font?>
-<BorderPane xmlns="http://javafx.com/javafx"
+<BorderPane  fx:id="bp"
+             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controller.RegisterAddController"
-            prefHeight="400.0" prefWidth="600.0">
+             prefHeight="591.0" prefWidth="747.0">
     <center>
         <Pane prefHeight="463.0" prefWidth="749.0" style="-fx-background-color: #77B0AA;" BorderPane.alignment="CENTER">
             <children>
