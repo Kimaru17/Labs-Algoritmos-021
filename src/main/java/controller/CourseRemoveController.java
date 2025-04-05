@@ -41,6 +41,7 @@ public class CourseRemoveController
             alert.setContentText("The course is already deleted or it doesn't exists");
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.showAndWait();
+            if (courseList.isEmpty()) util.FXUtility.loadPage("ucr.lab.HelloApplication", "course.fxml", bp);
         }
     }
 

@@ -1,3 +1,4 @@
+
 package controller;
 
 import domain.*;
@@ -67,7 +68,13 @@ public class CourseController
 
     @javafx.fxml.FXML
     public void removeOnAction(ActionEvent actionEvent) {
-        util.FXUtility.loadPage("ucr.lab.HelloApplication", "courseRemove.fxml", bp);
+        if (tableViewIsNotEmpty()){
+            util.FXUtility.loadPage("ucr.lab.HelloApplication", "courseRemove.fxml", bp);
+        }else {
+            alert.setContentText("The course list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
@@ -130,7 +137,13 @@ public class CourseController
 
     @javafx.fxml.FXML
     public void containsOnAction(ActionEvent actionEvent) {
-        util.FXUtility.loadPage("ucr.lab.HelloApplication", "courseContains.fxml", bp);
+        if (tableViewIsNotEmpty()){
+            util.FXUtility.loadPage("ucr.lab.HelloApplication", "courseContains.fxml", bp);
+        }else {
+            alert.setContentText("The student list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
