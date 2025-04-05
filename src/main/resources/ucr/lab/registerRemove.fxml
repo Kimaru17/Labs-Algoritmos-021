@@ -1,57 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<BorderPane fx:id="bp"
-            xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.RegisterRemoveController"
-            prefHeight="591.0" prefWidth="747.0">
+
+<BorderPane fx:id="bp" prefHeight="591.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterRemoveController">
     <center>
-        <Pane prefHeight="463.0" prefWidth="749.0" style="-fx-background-color: #23c3ff;" BorderPane.alignment="CENTER">
+        <Pane prefHeight="463.0" prefWidth="749.0" style="-fx-background-color: #B2DFDB;" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="222.0" layoutY="221.0" text="Registration ID:">
+                <Label layoutX="212.0" layoutY="272.0" text="Registration ID:">
                     <font>
-                        <Font name="Times New Roman" size="20.0" />
+                        <Font name="Arial" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="tf_registrationId" layoutX="398.0" layoutY="220.0" />
-                <Pane layoutY="489.0" prefHeight="102.0" prefWidth="749.0" style="-fx-background-color: #76c497;">
+                <TextField fx:id="tf_registrationId" layoutX="388.0" layoutY="271.0" />
+                <Pane layoutY="489.0" prefHeight="102.0" prefWidth="747.0" style="-fx-background-color: #4DB6AC;">
                     <children>
                         <Button layoutX="139.0" layoutY="14.0" mnemonicParsing="false" onAction="#removeOnAction" prefHeight="57.0" prefWidth="114.0" text="Remove">
                             <font>
-                                <Font name="System Bold" size="18.0" />
+                                <Font name="Arial" size="18.0" />
                             </font>
                         </Button>
                         <Button layoutX="318.0" layoutY="15.0" mnemonicParsing="false" onAction="#cleanOnAction" prefHeight="57.0" prefWidth="114.0" text="Clean">
                             <font>
-                                <Font name="System Bold" size="18.0" />
+                                <Font name="Arial" size="18.0" />
                             </font>
                         </Button>
                         <Button layoutX="495.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeOnAction" prefHeight="57.0" prefWidth="114.0" text="Close">
                             <font>
-                                <Font name="System Bold" size="18.0" />
+                                <Font name="Arial" size="18.0" />
                             </font>
                         </Button>
                     </children>
                 </Pane>
-                <Pane prefHeight="121.0" prefWidth="749.0" style="-fx-background-color: #fe6962;">
+                <Pane prefHeight="121.0" prefWidth="747.0" style="-fx-background-color: #00796B;">
                     <children>
-                        <Label layoutX="255.0" layoutY="42.0" text="Remove Registration">
+                        <Label layoutX="187.0" layoutY="37.0" text="Remove Registration">
                             <font>
                                 <Font name="Arial" size="40.0" />
                             </font>
                         </Label>
                     </children>
                 </Pane>
-                <Label layoutX="178.0" layoutY="152.0" text="Enter the id of the registration you want to remove:">
+                <Label layoutX="168.0" layoutY="203.0" text="Enter the id of the registration you want to remove:">
                     <font>
-                        <Font name="Times New Roman" size="20.0" />
+                        <Font name="Arial" size="20.0" />
                     </font>
                 </Label>
             </children>

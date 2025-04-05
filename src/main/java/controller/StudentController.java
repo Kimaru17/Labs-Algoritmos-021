@@ -52,6 +52,7 @@ public class StudentController
         }
     }
 
+
     @javafx.fxml.FXML
     public void clearOnAction(ActionEvent actionEvent) {
         this.studentList.clear();
@@ -72,7 +73,17 @@ public class StudentController
     }
 
     @javafx.fxml.FXML
-    public void sizeOnAction(ActionEvent actionEvent) {
+    public void sizeOnAction(ActionEvent actionEvent) throws ListException {
+        if(tableViewIsNotEmpty()) {
+            alert.setContentText("The size of the list is: \n" + studentList.size());
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.showAndWait();
+        }
+        else {
+            alert.setContentText("The student list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
@@ -96,15 +107,56 @@ public class StudentController
     }
 
     @javafx.fxml.FXML
-    public void getFirstOnAction(ActionEvent actionEvent) {
+    public void getFirstOnAction(ActionEvent actionEvent) throws ListException {
+        if(tableViewIsNotEmpty()) {
+            alert.setContentText("The first student in the list is: \n" + studentList.getFirst());
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.showAndWait();
+        }
+        else {
+            alert.setContentText("The student list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
-    public void removeFirstOnAction(ActionEvent actionEvent) {
+    public void removeFirstOnAction(ActionEvent actionEvent) throws ListException {
+        if (tableViewIsNotEmpty() ){
+            if (studentList.size()==1){
+                studentList.clear();
+                updateTableView();
+                initialize();
+            }
+            else {
+                studentList.removeFirst();
+                updateTableView();
+                initialize();
+            }
+        } else {
+            alert.setContentText("The student list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
-    public void getLastOnAction(ActionEvent actionEvent) {
+    public void getLastOnAction(ActionEvent actionEvent) throws ListException {
+        if(tableViewIsNotEmpty()) {
+            alert.setContentText("The last student in the list is: \n" + studentList.getLast());
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.showAndWait();
+        }
+        else {
+            alert.setContentText("The student list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
+    }
+
+    // verificacion de contenido en el TableView
+    private boolean tableViewIsNotEmpty(){
+        return !(this.studentTableview.getItems().isEmpty());
     }
 
     private void updateTableView() throws ListException {
@@ -116,5 +168,6 @@ public class StudentController
             }
         }
     }
+
 
 }

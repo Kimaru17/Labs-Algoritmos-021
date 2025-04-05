@@ -1,8 +1,6 @@
 package util;
 
-import domain.DoublyLinkedList;
-import domain.SinglyLinkedList;
-import domain.Student;
+import domain.*;
 
 import java.text.DecimalFormat;
 import java.util.Random;
@@ -39,6 +37,15 @@ public class Utility {
     public static int random(int bound){
         //return (int)Math.floor(Math.random()*bound); //forma 1
         return 1+random.nextInt(bound);
+    }
+
+    public static boolean isInteger(String text) {
+        try {
+            Integer.parseInt(text);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     public static void fill(int[] a) {
@@ -87,6 +94,14 @@ public class Utility {
                 return st1.getId().compareTo(st2.getId()) < 0 ? -1
                         :  st1.getId().compareTo(st2.getId()) > 0 ? 1 : 0;
 
+            case "Course":
+                Course c1 = (Course) a; Course c2 = (Course) b;
+                return c1.getId().compareTo(c2.getId()) < 0 ? -1
+                        :  c1.getId().compareTo(c2.getId()) > 0 ? 1 : 0;
+
+            case "Register":
+                Register reg1 = (Register) a; Register reg2 = (Register) b;
+                return reg1.getId() < reg2.getId() ? -1 : reg1.getId() > reg2.getId() ? 1 : 0;
         }
         return 2; //Unknown
     }
@@ -96,6 +111,8 @@ public class Utility {
         if(a instanceof String && b instanceof String) return "String";
         if(a instanceof Character && b instanceof Character) return "Character";
         if(a instanceof Student && b instanceof Student) return "Student";
+        if(a instanceof Course && b instanceof Course) return "Course";
+        if(a instanceof Register && b instanceof Register) return "Register";
         return "Unknown";
     }
 }

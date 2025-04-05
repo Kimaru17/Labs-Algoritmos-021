@@ -7,48 +7,48 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="bp" prefHeight="591.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CourseAddController">
+<BorderPane fx:id="bp" prefHeight="591.0" prefWidth="747.0" style="-fx-background-color: #B2DFDB;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CourseAddController">
     <center>
-        <Pane prefHeight="463.0" prefWidth="749.0" style="-fx-background-color: #23c3ff;" BorderPane.alignment="CENTER">
+        <Pane prefHeight="463.0" prefWidth="749.0" style="-fx-background-color: #B2DFDB;" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="157.0" layoutY="149.0" text="Course ID:">
+                <Label layoutX="203.0" layoutY="205.0" text="Course ID:">
                     <font>
-                        <Font name="Times New Roman" size="20.0" />
+                        <Font name="Arial" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="157.0" layoutY="217.0" text="Name:">
+                <Label layoutX="203.0" layoutY="273.0" text="Name:">
                     <font>
-                        <Font name="Times New Roman" size="20.0" />
+                        <Font name="Arial" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="157.0" layoutY="281.0" text="Credits:">
+                <Label layoutX="203.0" layoutY="337.0" text="Credits:">
                     <font>
-                        <Font name="Times New Roman" size="20.0" />
+                        <Font name="Arial" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="tf_courseId" layoutX="271.0" layoutY="142.0" prefHeight="37.0" prefWidth="151.0" />
-                <TextField fx:id="tf_name" layoutX="271.0" layoutY="210.0" prefHeight="37.0" prefWidth="150.0" />
-                <TextField fx:id="tf_credits" layoutX="271.0" layoutY="277.0" prefHeight="38.0" prefWidth="61.0" />
-                <Pane layoutY="489.0" prefHeight="102.0" prefWidth="749.0" style="-fx-background-color: #76c497;">
+                <TextField fx:id="tf_courseId" layoutX="317.0" layoutY="198.0" prefHeight="37.0" prefWidth="151.0" />
+                <TextField fx:id="tf_name" layoutX="317.0" layoutY="266.0" prefHeight="37.0" prefWidth="150.0" />
+                <TextField fx:id="tf_credits" layoutX="317.0" layoutY="333.0" prefHeight="38.0" prefWidth="61.0" />
+                <Pane layoutY="489.0" prefHeight="102.0" prefWidth="747.0" style="-fx-background-color: #4DB6AC;">
                     <children>
                         <Button layoutX="139.0" layoutY="14.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="57.0" prefWidth="114.0" text="Add">
                             <font>
-                                <Font name="System Bold" size="18.0" />
+                                <Font name="Arial" size="18.0" />
                             </font>
                         </Button>
                         <Button layoutX="318.0" layoutY="15.0" mnemonicParsing="false" onAction="#cleanOnAction" prefHeight="57.0" prefWidth="114.0" text="Clean">
                             <font>
-                                <Font name="System Bold" size="18.0" />
+                                <Font name="Arial" size="18.0" />
                             </font>
                         </Button>
                         <Button layoutX="495.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeOnAction" prefHeight="57.0" prefWidth="114.0" text="Close">
                             <font>
-                                <Font name="System Bold" size="18.0" />
+                                <Font name="Arial" size="18.0" />
                             </font>
                         </Button>
                     </children>
                 </Pane>
-                <Pane prefHeight="121.0" prefWidth="749.0" style="-fx-background-color: #fe6962;">
+                <Pane prefHeight="121.0" prefWidth="747.0" style="-fx-background-color: #00796B;">
                     <children>
                         <Label layoutX="281.0" layoutY="42.0" text="Add Courses">
                             <font>

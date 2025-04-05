@@ -1,6 +1,8 @@
 package controller;
 
+import domain.ListException;
 import domain.SinglyLinkedList;
+import domain.Student;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -25,7 +27,21 @@ public class StudentRemoveController
     }
 
     @javafx.fxml.FXML
-    public void removeOnAction(ActionEvent actionEvent) {
+    public void removeOnAction(ActionEvent actionEvent) throws ListException {
+        if (isValid()){
+            Student student = new Student(
+                    this.tf_studentId.getText()
+            );
+            this.studentList.remove(student);
+            util.Utility.setStudentList(this.studentList);
+            alert.setContentText("The customer was removed successfully");
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.showAndWait();
+        } else{
+            alert.setContentText("The student is already deleted or it doesn't exists");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
@@ -36,5 +52,10 @@ public class StudentRemoveController
     @javafx.fxml.FXML
     public void closeOnAction(ActionEvent actionEvent) {
         util.FXUtility.loadPage("ucr.lab.HelloApplication", "student.fxml", bp);
+    }
+
+    //verificador si la lista no este vacia y el tf tenga un valor
+    private boolean isValid(){
+        return !(this.tf_studentId.getText().isEmpty() && studentList.isEmpty());
     }
 }

@@ -1,6 +1,8 @@
 package controller;
 
+import domain.ListException;
 import domain.SinglyLinkedList;
+import domain.Student;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -24,7 +26,24 @@ public class StudentContainsController
     }
 
     @javafx.fxml.FXML
-    public void containsOnAction(ActionEvent actionEvent) {
+    public void containsOnAction(ActionEvent actionEvent) throws ListException {
+        if (isValid()){
+            Student student = new Student(
+                    this.tf_studentId.getText()
+            );
+
+            alert.setContentText(this.studentList.contains(student)
+                    ?"The student exist in the list"
+                    :"The student doesn't exist"
+            );
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.showAndWait();
+
+        } else{
+            alert.setContentText("There was an error searching");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
@@ -36,4 +55,10 @@ public class StudentContainsController
     public void closeOnAction(ActionEvent actionEvent) {
         util.FXUtility.loadPage("ucr.lab.HelloApplication", "student.fxml", bp);
     }
+
+    //verificador si la lista no este vacia y el tf tenga un valor
+    private boolean isValid(){
+        return !(this.tf_studentId.getText().isEmpty() && studentList.isEmpty());
+    }
+
 }
