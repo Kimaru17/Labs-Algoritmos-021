@@ -1,12 +1,15 @@
 package controller;
 
-import domain.DoublyLinkedList;
+import domain.*;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class RegisterAddController
 {
@@ -34,15 +37,60 @@ public class RegisterAddController
 
     private void loadStudentsToChoiceBox() {
         studentCB.getItems().clear();
-        //to do, cargar los datos de la lista
+        studentCB.getItems().clear();
+
+        try {
+            SinglyLinkedList studentList = util.Utility.getStudentList();
+
+            for (int i = 1; i <= studentList.size(); i++) {
+                Student s = (Student) studentList.getNode(i).data;
+                studentCB.getItems().add(s);
+            }
+        } catch (ListException e) {
+            System.out.println("Error al cargar estudiantes: " + e.getMessage());
+        }
     }
 
     private void loadCoursesToChoiceBox() {
         courseCB.getItems().clear();
-        //to do, cargar los datos de la lista
+
+        try {
+            DoublyLinkedList courseList = util.Utility.getCourseList();
+
+            for (int i = 1; i <= courseList.size(); i++) {
+                Course c = (Course) courseList.getNode(i).data;
+                courseCB.getItems().add(c);
+            }
+        } catch (ListException e) {
+            System.out.println("Error al cargar cursos: " + e.getMessage());
+        }
     }
+
     @javafx.fxml.FXML
-    public void addOnAction(ActionEvent actionEvent) {
+    public void addOnAction(ActionEvent actionEvent) throws ListException {
+        if (RegisterIsValid()){
+            Student selectedStudent = (Student) studentCB.getValue();
+            Course selectedCourse = (Course) courseCB.getValue();
+
+            Register register = new Register(
+                    Integer.parseInt(tf_registerId.getText()),
+                    LocalDateTime.of(date.getValue(), LocalTime.MIDNIGHT),
+                    selectedStudent.getId(),
+                    selectedCourse.getId()
+            );
+
+            this.registerList.add(register);
+            util.Utility.setRegisterList(this.registerList);
+
+            alert.setContentText("The registration was added successfully");
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.showAndWait();
+
+        } else{
+            alert.setContentText("The registration can't be added successfully");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
@@ -58,6 +106,13 @@ public class RegisterAddController
         util.FXUtility.loadPage("ucr.lab.HelloApplication", "register.fxml", bp);
     }
 
-
+    //verificar que no falte ningun dato en los tf
+    private boolean RegisterIsValid() throws ListException {
+        return !this.tf_registerId.getText().isEmpty()
+                && util.Utility.isInteger(this.tf_registerId.getText())
+                && this.date.getValue() != null
+                && this.studentCB.getValue() != null
+                && this.courseCB.getValue() != null;
+    }
 
 }

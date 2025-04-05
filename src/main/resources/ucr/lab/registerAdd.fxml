@@ -36,7 +36,7 @@
 
                 <TextField fx:id="tf_registerId" layoutX="306.0" layoutY="142.0" prefHeight="37.0" prefWidth="58.0" />
             <DatePicker fx:id="date" layoutX="306.0" layoutY="210.0" prefHeight="36.0" prefWidth="151.0" />
-            <ChoiceBox fx:id="studentCB" layoutX="307.0" layoutY="276.0" prefHeight="37.0" prefWidth="395.0" />
+            <ChoiceBox fx:id="studentCB" layoutX="307.0" layoutY="276.0" prefHeight="37.0" prefWidth="394.0" />
             <ChoiceBox fx:id="courseCB" layoutX="307.0" layoutY="345.0" prefHeight="37.0" prefWidth="394.0" />
                 <Pane layoutY="489.0" prefHeight="102.0" prefWidth="747.0" style="-fx-background-color: #4DB6AC;">
                     <children>

@@ -203,6 +203,70 @@ public class DoublyLinkedList implements List {
             throw new ListException("Error while sorting: " + e.getMessage());
         }
     }
+    //sortById para la interfaz register
+    public void sortById() throws ListException {
+        if (isEmpty()) {
+            throw new ListException("Doubly Linked List is empty");
+        }
+
+        try {
+            Node current = first;
+            Node index;
+            Register temp;
+
+            while (current != null) {
+                index = current.next;
+
+                while (index != null) {
+                    // Comparación numérica (int)
+                    if (((Register) current.data).getId() > ((Register) index.data).getId()) {
+                        // Intercambiar los datos
+                        temp = (Register) current.data;
+                        current.data = index.data;
+                        index.data = temp;
+                    }
+                    index = index.next;
+                }
+                current = current.next;
+            }
+        } catch (Exception e) {
+            throw new ListException("Error while sorting registers by ID: " + e.getMessage());
+        }
+    }
+    //sortByName para la interfaz register
+    public void sortByName() throws ListException {
+        if (isEmpty()) {
+            throw new ListException("Singly Linked List is empty");
+        }
+
+        try {
+            Node current = first;
+            Node index;
+            Student temp;
+
+            while (current != null) {
+                index = current.next;
+
+                while (index != null) {
+                    // Comparar nombres (alfabéticamente)
+                    if (((Student) current.data).getName()
+                            .compareToIgnoreCase(((Student) index.data).getName()) > 0) {
+
+                        // Intercambiar los datos
+                        temp = (Student) current.data;
+                        current.data = index.data;
+                        index.data = temp;
+                    }
+                    index = index.next;
+                }
+
+                current = current.next;
+            }
+
+        } catch (Exception e) {
+            throw new ListException("Error while sorting students by name: " + e.getMessage());
+        }
+    }
 
     @Override
     public int indexOf(Object element) throws ListException {

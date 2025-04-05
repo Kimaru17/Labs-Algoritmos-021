@@ -40,13 +40,10 @@ public class RegisterController
         this.registerList = util.Utility.getRegisterList();
         alert = util.FXUtility.alert("Register List", "Display Register");
         alert.setAlertType(Alert.AlertType.ERROR);
-        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        studentIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("Student Id"));
-        creditsTableColumn.setCellValueFactory(new PropertyValueFactory<>("Credits"));
-        studentNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("Student Name"));
-        courseIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("Course Id"));
-        dateTableColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
-        courseNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("Course Name"));
+        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        studentIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("studentId"));
+        courseIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("courseId"));
+        dateTableColumn.setCellValueFactory(new PropertyValueFactory<>("registerDate"));
         try{
             if(registerList!=null && !registerList.isEmpty()){
                 for(int i=1; i<=registerList.size(); i++) {
@@ -127,7 +124,7 @@ public class RegisterController
     public void sortByStudentOnAction(ActionEvent actionEvent) throws ListException {
         if(tableViewIsNotEmpty()) {
 
-            this.registerList.sort();
+            this.registerList.sortByName();
             util.Utility.setRegisterList(this.registerList);
             alert.setContentText("The registration list was sorted by the student name");
             alert.setAlertType(Alert.AlertType.INFORMATION);
@@ -142,24 +139,28 @@ public class RegisterController
 
     @javafx.fxml.FXML
     public void getPrevOnAction(ActionEvent actionEvent) {
+        util.FXUtility.loadPage("ucr.lab.HelloApplication", "registerGetPrev.fxml", bp);
+    }
+
+    @javafx.fxml.FXML
+    public void sortByIdOnAction(ActionEvent actionEvent) throws ListException {
         if(tableViewIsNotEmpty()) {
-            alert.setContentText("The last student in the list is: \n" + registerList.getPrev());
+            this.registerList.sortById();
+            util.Utility.setRegisterList(this.registerList);
+            alert.setContentText("The registration list was sorted by Id");
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.showAndWait();
         }
         else {
-            alert.setContentText("The student list is empty");
+            alert.setContentText("The registration list is empty");
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.showAndWait();
         }
     }
 
     @javafx.fxml.FXML
-    public void sortByIdOnAction(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
     public void getNextOnAction(ActionEvent actionEvent) {
+        util.FXUtility.loadPage("ucr.lab.HelloApplication", "registerGetNext.fxml", bp);
     }
 
     // verificacion de contenido en el TableView
@@ -169,7 +170,7 @@ public class RegisterController
 
     private void updateTableView() throws ListException {
         this.courseRegistrationTableview.getItems().clear(); //clear table
-        this.registerList = util.Utility.getCourseList(); //cargo la lista
+        this.registerList = util.Utility.getRegisterList(); //cargo la lista
         if(registerList!=null && !registerList.isEmpty()){
             for(int i=1; i<=registerList.size(); i++) {
                 this.courseRegistrationTableview.getItems().add((Register)registerList.getNode(i).data);
