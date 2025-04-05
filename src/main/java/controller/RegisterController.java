@@ -73,7 +73,13 @@ public class RegisterController
 
     @javafx.fxml.FXML
     public void removeOnAction(ActionEvent actionEvent) {
-        util.FXUtility.loadPage("ucr.lab.HelloApplication", "registerRemove.fxml", bp);
+        if (tableViewIsNotEmpty()){
+            util.FXUtility.loadPage("ucr.lab.HelloApplication", "registerRemove.fxml", bp);
+        }else {
+            alert.setContentText("The registration list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
@@ -103,7 +109,13 @@ public class RegisterController
 
     @javafx.fxml.FXML
     public void containsOnAction(ActionEvent actionEvent) {
-        util.FXUtility.loadPage("ucr.lab.HelloApplication", "registerContains.fxml", bp);
+        if (tableViewIsNotEmpty()){
+            util.FXUtility.loadPage("ucr.lab.HelloApplication", "registerContains.fxml", bp);
+        }else {
+            alert.setContentText("The registration list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML

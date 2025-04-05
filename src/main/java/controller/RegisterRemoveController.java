@@ -28,18 +28,29 @@ public class RegisterRemoveController
 
     @javafx.fxml.FXML
     public void removeOnAction(ActionEvent actionEvent) throws ListException {
-        if (isValid()){
-            Register register = new Register(
-                    Integer.parseInt(this.tf_registrationId.getText())
-            );
-            this.registerList.remove(register);
-            util.Utility.setRegisterList(this.registerList);
-            alert.setContentText("The registration was removed successfully");
-            alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.showAndWait();
-        } else{
-            alert.setContentText("The registration is already deleted or it doesn't exists");
-            alert.setAlertType(Alert.AlertType.ERROR);
+        if (isValid()) {
+            Register register = new Register(this.tf_registrationId.getText());
+
+            if (registerList.contains(register)) {
+                studentList.remove(student);
+                util.Utility.setStudentList(studentList);
+
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.setContentText("The student was removed successfully");
+                alert.showAndWait();
+
+                // Si está vacía, volver a la página principal
+                if (studentList.isEmpty()) {
+                    util.FXUtility.loadPage("ucr.lab.HelloApplication", "student.fxml", bp);
+                }
+            } else {
+                alert.setAlertType(Alert.AlertType.ERROR);
+                alert.setContentText("The student is already deleted or doesn't exist");
+                alert.showAndWait();
+            }
+        } else {
+            alert.setAlertType(Alert.AlertType.WARNING);
+            alert.setContentText("Invalid student ID");
             alert.showAndWait();
         }
     }

@@ -69,7 +69,13 @@ public class StudentController
 
     @javafx.fxml.FXML
     public void containsOnAction(ActionEvent actionEvent) {
-        util.FXUtility.loadPage("ucr.lab.HelloApplication", "studentContains.fxml", bp);
+        if (tableViewIsNotEmpty()){
+            util.FXUtility.loadPage("ucr.lab.HelloApplication", "studentContains.fxml", bp);
+        }else {
+            alert.setContentText("The student list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
@@ -98,7 +104,13 @@ public class StudentController
 
     @javafx.fxml.FXML
     public void removeOnAction(ActionEvent actionEvent) {
-        util.FXUtility.loadPage("ucr.lab.HelloApplication", "studentRemove.fxml", bp);
+        if (tableViewIsNotEmpty()){
+            util.FXUtility.loadPage("ucr.lab.HelloApplication", "studentRemove.fxml", bp);
+        }else {
+            alert.setContentText("The student list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
