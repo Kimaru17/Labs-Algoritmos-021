@@ -79,8 +79,37 @@ public class DoublyLinkedList implements List {
     }
 
     @Override
-    public void addInSortedList(Object element) {
+    public void addInSortedList(Object element){
+        Node newNode = new Node(element);
 
+        if (isEmpty()) {
+            first = newNode;
+        } else {
+            Node current = first;
+            Node prev = null;
+
+            // Buscar donde insertarlo
+            while (current != null && util.Utility.compare(current.data, element) < 0) {
+                prev = current;
+                current = current.next;
+            }
+
+            // Si sigue siendo nulo despues del recorrido se inserta al inicio
+            if (prev == null) {
+                newNode.next = first;
+                first.prev = newNode;
+                first = newNode;
+            }
+            // Insertar en la posicion que encontro si no va al inicio
+            else {
+                prev.next = newNode;
+                newNode.prev = prev;
+                newNode.next = current;
+                if (current != null) {
+                    current.prev = newNode;
+                }
+            }
+        }
     }
 
     @Override
@@ -126,12 +155,53 @@ public class DoublyLinkedList implements List {
 
     @Override
     public Object removeLast() throws ListException {
-        return null;
+        if (isEmpty()) {
+            throw new ListException("Doubly Linked List is empty");
+        }
+
+        Node lastNode = first;
+
+        while (lastNode.next != null) {
+            lastNode = lastNode.next;
+        }
+
+        lastNode.prev.next = null; //Cambiar el next del nodo antes del ultimo
+        lastNode.prev = null;   //Limpiar el prev del nodo que se elimina
+
+        return lastNode.data;
     }
 
     @Override
     public void sort() throws ListException {
+        if (isEmpty()) {
+            throw new ListException("Doubly Linked List is Empty");
+        }
 
+        try {
+            Node current = first;
+            Node index;
+            Course temp;  // Cambiamos Product por Course
+
+            while (current != null) {
+                index = current.next;
+
+                while (index != null) {
+                    // Comparación por nombre del curso (podrías cambiar el criterio)
+                    if (((Course) current.data).getName()
+                            .compareTo(((Course) index.data).getName()) > 0) {
+
+                        // Swap de datos entre nodos
+                        temp = (Course) current.data;
+                        current.data = index.data;
+                        index.data = temp;
+                    }
+                    index = index.next;
+                }
+                current = current.next;
+            }
+        } catch (Exception e) {
+            throw new ListException("Error while sorting: " + e.getMessage());
+        }
     }
 
     @Override
@@ -157,17 +227,51 @@ public class DoublyLinkedList implements List {
 
     @Override
     public Object getLast() throws ListException {
-        return null;
+        if (isEmpty()) {
+            throw new ListException("Doubly Linked List is empty");
+        }
+
+        Node aux = first;
+        while (aux.next != null) {
+            aux = aux.next;
+        }
+        return aux.data;
     }
 
     @Override
     public Object getPrev(Object element) throws ListException {
-        return null;
+        if (isEmpty()) {
+            throw new ListException("Doubly Linked List is empty");
+        }
+
+        Node aux = first;
+        while (aux != null) {
+            if (util.Utility.compare(aux.data, element) == 0) {
+
+                return aux.prev.data;
+            }
+            aux = aux.next;
+        }
+        throw new ListException("Element not found in list");
     }
 
     @Override
     public Object getNext(Object element) throws ListException {
-        return null;
+        if (isEmpty()) {
+            throw new ListException("Doubly Linked List is empty");
+        }
+
+        Node aux = first;
+        while (aux != null) {
+            if (util.Utility.compare(aux.data, element) == 0) {
+                if (aux.next == null) {
+                    throw new ListException("No next element for the last node");
+                }
+                return aux.next.data;
+            }
+            aux = aux.next;
+        }
+        throw new ListException("Element not found in list");
     }
 
     @Override
