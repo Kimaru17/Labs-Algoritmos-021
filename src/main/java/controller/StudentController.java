@@ -75,7 +75,7 @@ public class StudentController
     @javafx.fxml.FXML
     public void sizeOnAction(ActionEvent actionEvent) throws ListException {
         if(tableViewIsNotEmpty()) {
-            alert.setContentText("The size of the list is: \n" + studentList.size());
+            alert.setContentText("The size of the students list is: \n" + studentList.size());
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.showAndWait();
         }
@@ -125,12 +125,12 @@ public class StudentController
         if (tableViewIsNotEmpty() ){
             if (studentList.size()==1){
                 studentList.clear();
-                updateTableView();
+                studentTableview.getItems().clear();
                 initialize();
             }
             else {
                 studentList.removeFirst();
-                updateTableView();
+                studentTableview.getItems().clear();
                 initialize();
             }
         } else {

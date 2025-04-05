@@ -57,4 +57,7 @@ public class RegisterAddController
     public void closeOnAction(ActionEvent actionEvent) {
         util.FXUtility.loadPage("ucr.lab.HelloApplication", "register.fxml", bp);
     }
+
+
+
 }

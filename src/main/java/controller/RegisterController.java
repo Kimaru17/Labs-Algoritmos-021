@@ -85,7 +85,23 @@ public class RegisterController
     }
 
     @javafx.fxml.FXML
-    public void removeFirstOnAction(ActionEvent actionEvent) {
+    public void removeFirstOnAction(ActionEvent actionEvent) throws ListException {
+        if (tableViewIsNotEmpty() ){
+            if (registerList.size()==1){
+                registerList.clear();
+                courseRegistrationTableview.getItems().clear();
+                initialize();
+            }
+            else {
+                registerList.removeFirst();
+                courseRegistrationTableview.getItems().clear();
+                initialize();
+            }
+        } else {
+            alert.setContentText("The registration list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
@@ -94,15 +110,48 @@ public class RegisterController
     }
 
     @javafx.fxml.FXML
-    public void sizeOnAction(ActionEvent actionEvent) {
+    public void sizeOnAction(ActionEvent actionEvent) throws ListException {
+        if(tableViewIsNotEmpty()) {
+            alert.setContentText("The size of the registration list is: \n" + registerList.size());
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.showAndWait();
+        }
+        else {
+            alert.setContentText("The registration list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
-    public void sortByStudentOnAction(ActionEvent actionEvent) {
+    public void sortByStudentOnAction(ActionEvent actionEvent) throws ListException {
+        if(tableViewIsNotEmpty()) {
+
+            this.registerList.sort();
+            util.Utility.setRegisterList(this.registerList);
+            alert.setContentText("The registration list was sorted by the student name");
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.showAndWait();
+        }
+        else {
+            alert.setContentText("The registration list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
     public void getPrevOnAction(ActionEvent actionEvent) {
+        if(tableViewIsNotEmpty()) {
+            alert.setContentText("The last student in the list is: \n" + registerList.getPrev());
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.showAndWait();
+        }
+        else {
+            alert.setContentText("The student list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
@@ -111,6 +160,11 @@ public class RegisterController
 
     @javafx.fxml.FXML
     public void getNextOnAction(ActionEvent actionEvent) {
+    }
+
+    // verificacion de contenido en el TableView
+    private boolean tableViewIsNotEmpty(){
+        return !(this.courseRegistrationTableview.getItems().isEmpty());
     }
 
     private void updateTableView() throws ListException {

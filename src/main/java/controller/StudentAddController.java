@@ -34,6 +34,7 @@ public class StudentAddController
     @javafx.fxml.FXML
     public void addOnAction(ActionEvent actionEvent) throws ListException {
         if (StudentIsValid()){
+
             Student student = new Student(
                     this.tf_studentId.getText(),
                     this.tf_name.getText(),
@@ -53,7 +54,6 @@ public class StudentAddController
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.showAndWait();
         }
-
     }
 
     @javafx.fxml.FXML
@@ -69,13 +69,8 @@ public class StudentAddController
         util.FXUtility.loadPage("ucr.lab.HelloApplication", "student.fxml", bp);
     }
 
-    //verificar que no falte ningun dato sea correcto y que no haya otro estudiante con ese Id
+    //verificar que no falte ningun dato en los tf
     private boolean StudentIsValid() throws ListException {
-        if (!studentList.isEmpty()){
-            return !(this.tf_studentId.getText().isEmpty()) && !(this.tf_name.getText().isEmpty())
-                    && !(this.tf_age.getText().isEmpty()) && util.Utility.isInteger(this.tf_age.getText())
-                    && !(this.tf_address.getText().isEmpty()) && studentList.contains(this.tf_studentId.getText());
-        }
         return !(this.tf_studentId.getText().isEmpty()) && !(this.tf_name.getText().isEmpty())
                 && !(this.tf_age.getText().isEmpty()) && util.Utility.isInteger(this.tf_age.getText())
                 && !(this.tf_address.getText().isEmpty()) ;

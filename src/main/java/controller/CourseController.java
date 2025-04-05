@@ -81,15 +81,51 @@ public class CourseController
     }
 
     @javafx.fxml.FXML
-    public void getFirstOnAction(ActionEvent actionEvent) {
+    public void getFirstOnAction(ActionEvent actionEvent) throws ListException {
+        if(tableViewIsNotEmpty()) {
+            alert.setContentText("The first course of the list is: \n" + courseList.getFirst());
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.showAndWait();
+        }
+        else {
+            alert.setContentText("The course list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
-    public void removeFirstOnAction(ActionEvent actionEvent) {
+    public void removeFirstOnAction(ActionEvent actionEvent) throws ListException {
+        if (tableViewIsNotEmpty() ){
+            if (courseList.size()==1){
+                courseList.clear();
+                courseTableview.getItems().clear();
+                initialize();
+            }
+            else {
+                courseList.removeFirst();
+                courseTableview.getItems().clear();
+                initialize();
+            }
+        } else {
+            alert.setContentText("The course list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
-    public void getLastOnAction(ActionEvent actionEvent) {
+    public void getLastOnAction(ActionEvent actionEvent) throws ListException {
+        if(tableViewIsNotEmpty()) {
+            alert.setContentText("The last course of the list is: \n" + courseList.getLast());
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.showAndWait();
+        }
+        else {
+            alert.setContentText("The course list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
@@ -98,7 +134,17 @@ public class CourseController
     }
 
     @javafx.fxml.FXML
-    public void sizeOnAction(ActionEvent actionEvent) {
+    public void sizeOnAction(ActionEvent actionEvent) throws ListException {
+        if(tableViewIsNotEmpty()) {
+            alert.setContentText("The size of the courses list is: \n" + courseList.size());
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.showAndWait();
+        }
+        else {
+            alert.setContentText("The course list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     private void updateTableView() throws ListException {
@@ -110,4 +156,10 @@ public class CourseController
             }
         }
     }
+
+    // verificacion de contenido en el TableView
+    private boolean tableViewIsNotEmpty(){
+        return !(this.courseTableview.getItems().isEmpty());
+    }
+
 }

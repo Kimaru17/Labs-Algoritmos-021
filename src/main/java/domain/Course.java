@@ -12,6 +12,10 @@ public class Course {
         this.credits = credits;
     }
 
+    public Course(String id) {
+        this.id = id;
+    }
+
     public String getId() {
         return id;
     }

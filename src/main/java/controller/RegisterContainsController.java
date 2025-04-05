@@ -3,19 +3,17 @@ package controller;
 import domain.DoublyLinkedList;
 import domain.ListException;
 import domain.Register;
-import domain.Student;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
-public class RegisterRemoveController
+public class RegisterContainsController
 {
     @javafx.fxml.FXML
     private TextField tf_registrationId;
     @javafx.fxml.FXML
     private BorderPane bp;
-    //defino la lista enlazada interna
     private DoublyLinkedList registerList;
     private Alert alert; //para el manejo de alertas
 
@@ -23,22 +21,25 @@ public class RegisterRemoveController
     public void initialize() {
         //cargamos la lista general
         this.registerList = util.Utility.getRegisterList();
-        alert = util.FXUtility.alert("Register List", "Remove Registration");
+        alert = util.FXUtility.alert("Register List", "Contains Registration");
     }
 
     @javafx.fxml.FXML
-    public void removeOnAction(ActionEvent actionEvent) throws ListException {
+    public void containsOnAction(ActionEvent actionEvent) throws ListException {
         if (isValid()){
             Register register = new Register(
                     Integer.parseInt(this.tf_registrationId.getText())
             );
-            this.registerList.remove(register);
-            util.Utility.setRegisterList(this.registerList);
-            alert.setContentText("The registration was removed successfully");
+
+            alert.setContentText(this.registerList.contains(register)
+                    ?"The registration exist in the list"
+                    :"The registration doesn't exist"
+            );
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.showAndWait();
+
         } else{
-            alert.setContentText("The registration is already deleted or it doesn't exists");
+            alert.setContentText("There was an error searching. Enter a new number");
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.showAndWait();
         }

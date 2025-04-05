@@ -67,13 +67,8 @@ public class StudentAddFirstController
         }
     }
 
-    //verificar que no falte ningun dato sea correcto y que no haya otro estudiante con ese Id
+    //verificar que no falte ningun dato en los tf
     private boolean StudentIsValid() throws ListException {
-        if (!studentList.isEmpty()){
-            return !(this.tf_studentId.getText().isEmpty()) && !(this.tf_name.getText().isEmpty())
-                    && !(this.tf_age.getText().isEmpty()) && util.Utility.isInteger(this.tf_age.getText())
-                    && !(this.tf_address.getText().isEmpty()) && studentList.contains(this.tf_studentId.getText());
-        }
         return !(this.tf_studentId.getText().isEmpty()) && !(this.tf_name.getText().isEmpty())
                 && !(this.tf_age.getText().isEmpty()) && util.Utility.isInteger(this.tf_age.getText())
                 && !(this.tf_address.getText().isEmpty()) ;

@@ -1,6 +1,9 @@
 package controller;
 
+import domain.Course;
 import domain.DoublyLinkedList;
+import domain.ListException;
+import domain.Student;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -24,7 +27,24 @@ public class CourseContainsController
     }
 
     @javafx.fxml.FXML
-    public void containsOnAction(ActionEvent actionEvent) {
+    public void containsOnAction(ActionEvent actionEvent) throws ListException {
+        if (isValid()){
+            Course course = new Course(
+                    this.tf_courseId.getText()
+            );
+
+            alert.setContentText(this.courseList.contains(course)
+                    ?"The course exist in the list"
+                    :"The course doesn't exist"
+            );
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.showAndWait();
+
+        } else{
+            alert.setContentText("There was an error searching");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
@@ -36,4 +56,10 @@ public class CourseContainsController
     public void closeOnAction(ActionEvent actionEvent) {
         util.FXUtility.loadPage("ucr.lab.HelloApplication", "course.fxml", bp);
     }
+
+    //verificar que la lista y el tf no esten vacios
+    private boolean isValid(){
+        return !(this.tf_courseId.getText().isEmpty() && courseList.isEmpty());
+    }
+
 }

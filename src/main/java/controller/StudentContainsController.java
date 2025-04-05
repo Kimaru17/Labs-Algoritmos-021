@@ -56,7 +56,7 @@ public class StudentContainsController
         util.FXUtility.loadPage("ucr.lab.HelloApplication", "student.fxml", bp);
     }
 
-    //verificador si la lista no este vacia y el tf tenga un valor
+    //verificar que la lista y el tf no esten vacios
     private boolean isValid(){
         return !(this.tf_studentId.getText().isEmpty() && studentList.isEmpty());
     }

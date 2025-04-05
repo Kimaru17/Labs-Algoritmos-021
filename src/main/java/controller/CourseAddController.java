@@ -1,6 +1,9 @@
 package controller;
 
+import domain.Course;
 import domain.DoublyLinkedList;
+import domain.ListException;
+import domain.Student;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -28,7 +31,24 @@ public class CourseAddController
     }
 
     @javafx.fxml.FXML
-    public void addOnAction(ActionEvent actionEvent) {
+    public void addOnAction(ActionEvent actionEvent) throws ListException {
+        if (CourseIsValid()){
+            Course course = new Course(
+                    this.tf_courseId.getText(),
+                    this.tf_name.getText(),
+                    Integer.parseInt(this.tf_credits.getText())
+            );
+            this.courseList.add(course);
+            util.Utility.setCourseList(this.courseList);
+            alert.setContentText("The course was added successfully");
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.showAndWait();
+
+        } else{
+            alert.setContentText("The course can't be added successfully");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
@@ -42,4 +62,11 @@ public class CourseAddController
     public void closeOnAction(ActionEvent actionEvent) {
         util.FXUtility.loadPage("ucr.lab.HelloApplication", "course.fxml", bp);
     }
+
+    //verificar que no falte ningun dato en los tf
+    private boolean CourseIsValid() throws ListException {
+        return !(this.tf_courseId.getText().isEmpty()) && !(this.tf_name.getText().isEmpty())
+                && !(this.tf_credits.getText().isEmpty()) && util.Utility.isInteger(this.tf_credits.getText());
+    }
+
 }

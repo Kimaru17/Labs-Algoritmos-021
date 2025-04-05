@@ -34,7 +34,7 @@ public class StudentRemoveController
             );
             this.studentList.remove(student);
             util.Utility.setStudentList(this.studentList);
-            alert.setContentText("The customer was removed successfully");
+            alert.setContentText("The student was removed successfully");
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.showAndWait();
         } else{
