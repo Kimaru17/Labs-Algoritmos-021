@@ -3,7 +3,6 @@ package controller;
 
 import domain.DoublyLinkedList;
 import domain.ListException;
-import domain.Register;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
