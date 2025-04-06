@@ -37,12 +37,26 @@ public class RegisterGetNextController
 
     @javafx.fxml.FXML
     public void getNextOnAction(ActionEvent actionEvent) throws ListException {
-        if (isValid()){
-            alert.setContentText("The next registration in the list is: \n" + registerList.getNext(this.tf_registrationId.getText()));
-            alert.setAlertType(Alert.AlertType.INFORMATION);
+        try {
+            if (isValid()) {
+                Object current = registerList.getObject(Integer.parseInt(this.tf_registrationId.getText()));
+                Object next = registerList.getNext(current);
+
+                if (next != null) {
+                    alert.setContentText("The next registration in the list is: \n" + next);
+                    alert.setAlertType(Alert.AlertType.INFORMATION);
+                } else {
+                    alert.setContentText("There is no next registration.");
+                    alert.setAlertType(Alert.AlertType.WARNING);
+                }
+                alert.showAndWait();
+            }
+        } catch (ListException e) {
+            alert.setContentText("The registration list doesn't exist or there's an error accessing it.");
+            alert.setAlertType(Alert.AlertType.ERROR);
             alert.showAndWait();
-        } else{
-            alert.setContentText("The registration list don't exists or theres no next registration.");
+        } catch (NullPointerException e) {
+            alert.setContentText("This is the last registration in the list.");
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.showAndWait();
         }

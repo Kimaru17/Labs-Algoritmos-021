@@ -27,12 +27,32 @@ public class RegisterGetPrevController
 
     @javafx.fxml.FXML
     public void getPrevOnAction(ActionEvent actionEvent) throws ListException {
-        if (isValid()){
-            alert.setContentText("The previous registration in the list is: \n" + registerList.getPrev(this.tf_registrationId.getText()));
-            alert.setAlertType(Alert.AlertType.INFORMATION);
+        try {
+            if (isValid()) {
+                // Obtén el nodo actual
+                Object current = registerList.getObject(Integer.parseInt(this.tf_registrationId.getText()));
+                // Obtén el nodo previo
+                Object prev = registerList.getPrev(current);
+
+                // Verifica si el nodo previo existe
+                if (prev != null) {
+                    alert.setContentText("The previous registration in the list is: \n" + prev);
+                    alert.setAlertType(Alert.AlertType.INFORMATION);
+                } else {
+                    // Si no hay previo (es el primer nodo)
+                    alert.setContentText("There is no previous registration.");
+                    alert.setAlertType(Alert.AlertType.WARNING);
+                }
+                alert.showAndWait();
+            }
+        } catch (ListException e) {
+            // En caso de que no exista el nodo o haya un error
+            alert.setContentText("The registration list doesn't exist or there's an error accessing it.");
+            alert.setAlertType(Alert.AlertType.ERROR);
             alert.showAndWait();
-        } else{
-            alert.setContentText("The registration list don't exists or theres no previous registration");
+        } catch (NullPointerException e) {
+            // En caso de NullPointerException, si aux.prev es null
+            alert.setContentText("This is the first registration in the list.");
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.showAndWait();
         }

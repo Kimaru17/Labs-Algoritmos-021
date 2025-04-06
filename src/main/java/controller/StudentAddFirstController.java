@@ -47,25 +47,39 @@ public class StudentAddFirstController
     @javafx.fxml.FXML
     public void addFirstOnAction(ActionEvent actionEvent) throws ListException {
         if (StudentIsValid()){
+            String studentId = this.tf_studentId.getText();
+            boolean idExists = false;
+            if (!studentList.isEmpty()) {
+                for (int i = 1; i <= studentList.size(); i++) {
+                    Student existingStudent = (Student) studentList.getNode(i).data;
+                    if (existingStudent.getId().equals(studentId)) {
+                        idExists = true;
+                        break;
+                    }
+                }
+            }
+            if (idExists) {
+                alert.setContentText("The student Id is already registered ");
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.showAndWait();
+                return;
+            }
             Student student = new Student(
                     this.tf_studentId.getText(),
                     this.tf_name.getText(),
                     Integer.parseInt(this.tf_age.getText()),
                     this.tf_address.getText()
             );
-
             this.studentList.addFirst(student);
             util.Utility.setStudentList(this.studentList);
-
             alert.setContentText("The student was added successfully");
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.showAndWait();
-
         } else{
             alert.setContentText("The student can't be added successfully");
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.showAndWait();
-        }
+             }
     }
 
     //verificar que no falte ningun dato en los tf

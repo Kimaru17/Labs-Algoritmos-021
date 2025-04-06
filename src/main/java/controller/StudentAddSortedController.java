@@ -1,4 +1,3 @@
-
 package controller;
 
 import domain.ListException;
@@ -47,16 +46,36 @@ public class StudentAddSortedController
     @javafx.fxml.FXML
     public void addSortedOnAction(ActionEvent actionEvent) throws ListException {
         if (StudentIsValid()){
+            String studentId = this.tf_studentId.getText();
+            boolean idExists = false;
+            if (!studentList.isEmpty()) {
+                for (int i = 1; i <= studentList.size(); i++) {
+                    Student existingStudent = (Student) studentList.getNode(i).data;
+                    if (existingStudent.getId().equals(studentId)) {
+                        idExists = true;
+                        break;
+                    }
+                }
+            }
+            if (idExists) {
+                alert.setContentText("The student Id is already registered ");
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.showAndWait();
+                return;
+            }
             Student student = new Student(
                     this.tf_studentId.getText(),
                     this.tf_name.getText(),
                     Integer.parseInt(this.tf_age.getText()),
                     this.tf_address.getText()
             );
-
-            this.studentList.addInSortedList(student);
+            if (studentList.isEmpty()) {
+                studentList.add(student);
+            } else {
+                studentList.sort();
+                studentList.addInSortedList(student);
+            }
             util.Utility.setStudentList(this.studentList);
-
             alert.setContentText("The student was added successfully");
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.showAndWait();
@@ -66,13 +85,12 @@ public class StudentAddSortedController
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.showAndWait();
         }
-
     }
 
     //verificar que no falte ningun dato en los tf
     private boolean StudentIsValid() throws ListException {
         return !(this.tf_studentId.getText().isEmpty()) && !(this.tf_name.getText().isEmpty())
                 && !(this.tf_age.getText().isEmpty()) && util.Utility.isInteger(this.tf_age.getText())
-                && !(this.tf_address.getText().isEmpty()) ;
+                && !(this.tf_address.getText().isEmpty());
     }
 }

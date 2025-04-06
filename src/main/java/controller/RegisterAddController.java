@@ -72,21 +72,38 @@ public class RegisterAddController
         if (RegisterIsValid()){
             Student selectedStudent = (Student) studentCB.getValue();
             Course selectedCourse = (Course) courseCB.getValue();
-
+            int registerId = Integer.parseInt(this.tf_registerId.getText());
+            boolean idExists  = false;
+            if (!registerList.isEmpty()){
+                for (int i = 1; i <= registerList.size(); i++) {
+                    Register existingRegister = (Register) registerList.getNode(i).data;
+                    if (existingRegister.getId() == registerId) {
+                        idExists = true;
+                        break;
+                    }
+                }
+            }
+            if (idExists) {
+                alert.setContentText("The register Id is already registered ");
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.showAndWait();
+                return;
+            }
             Register register = new Register(
                     Integer.parseInt(tf_registerId.getText()),
                     LocalDateTime.of(date.getValue(), LocalTime.MIDNIGHT),
                     selectedStudent.getId(),
-                    selectedCourse.getId()
+                    selectedStudent.getName(),
+                    selectedCourse.getId(),
+                    selectedCourse.getName(),
+                    selectedCourse.getCredits()
             );
 
             this.registerList.add(register);
             util.Utility.setRegisterList(this.registerList);
-
             alert.setContentText("The registration was added successfully");
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.showAndWait();
-
         } else{
             alert.setContentText("The registration can't be added successfully");
             alert.setAlertType(Alert.AlertType.ERROR);

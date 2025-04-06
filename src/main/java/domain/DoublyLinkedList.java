@@ -244,18 +244,18 @@ public class DoublyLinkedList implements List {
         try {
             Node current = first;
             Node index;
-            Student temp;
+            Register temp;
 
             while (current != null) {
                 index = current.next;
 
                 while (index != null) {
                     // Comparar nombres (alfabéticamente)
-                    if (((Student) current.data).getName()
-                            .compareToIgnoreCase(((Student) index.data).getName()) > 0) {
+                    if (((Register) current.data).getStudentName()
+                            .compareToIgnoreCase(((Register) index.data).getStudentName()) > 0) {
 
                         // Intercambiar los datos
-                        temp = (Student) current.data;
+                        temp = (Register) current.data;
                         current.data = index.data;
                         index.data = temp;
                     }
@@ -366,5 +366,17 @@ public class DoublyLinkedList implements List {
             aux = aux.next; //lo muevo al sgte nodo
         }
         return result;
+    }
+
+    public Object getObject(int i){
+        Node aux = first;
+        Register r = (Register) aux.data;
+        while(aux!=null){
+            if (i == ((Register) aux.data).getId()) return aux.data;
+
+            aux = aux.next; //lo muevo al sgte nodo
+        }
+
+        return null;
     }
 }

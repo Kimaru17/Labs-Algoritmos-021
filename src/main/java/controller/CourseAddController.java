@@ -34,6 +34,23 @@ public class CourseAddController
     @javafx.fxml.FXML
     public void addOnAction(ActionEvent actionEvent) throws ListException {
         if (CourseIsValid()){
+            String courseId = this.tf_courseId.getText();
+            boolean idExists = false;
+            if (!courseList.isEmpty()) {
+                for (int i = 1; i <= courseList.size(); i++) {
+                    Course existingCourse = (Course) courseList.getNode(i).data;
+                    if (existingCourse.getId().equals(courseId)) {
+                        idExists = true;
+                        break;
+                    }
+                }
+            }
+            if (idExists) {
+                alert.setContentText("The course Id is already registered ");
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.showAndWait();
+                return;
+            }
             Course course = new Course(
                     this.tf_courseId.getText(),
                     this.tf_name.getText(),
@@ -44,12 +61,11 @@ public class CourseAddController
             alert.setContentText("The course was added successfully");
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.showAndWait();
-
         } else{
             alert.setContentText("The course can't be added successfully");
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.showAndWait();
-        }
+            }
     }
 
     @javafx.fxml.FXML

@@ -17,7 +17,7 @@ public class HelloApplication extends Application {
         scene.getStylesheets().add(css);
         stage.setTitle("Laboratory 4");
         stage.setScene(scene);
-        stage.setResizable(false);
+        stage.setResizable(false); 
         stage.show();
     }
 

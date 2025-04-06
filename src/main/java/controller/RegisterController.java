@@ -44,6 +44,9 @@ public class RegisterController
         studentIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("studentId"));
         courseIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("courseId"));
         dateTableColumn.setCellValueFactory(new PropertyValueFactory<>("registerDate"));
+        studentNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("studentName"));
+        courseNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("courseName"));
+        creditsTableColumn.setCellValueFactory(new PropertyValueFactory<>("credits"));
         try{
             if(registerList!=null && !registerList.isEmpty()){
                 for(int i=1; i<=registerList.size(); i++) {
@@ -141,6 +144,8 @@ public class RegisterController
             alert.setContentText("The registration list was sorted by the student name");
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.showAndWait();
+            courseRegistrationTableview.getItems().clear();
+            initialize();
         }
         else {
             alert.setContentText("The registration list is empty");
@@ -151,19 +156,41 @@ public class RegisterController
 
     @javafx.fxml.FXML
     public void getPrevOnAction(ActionEvent actionEvent) {
-        util.FXUtility.loadPage("ucr.lab.HelloApplication", "registerGetPrev.fxml", bp);
+        if (tableViewIsNotEmpty()){
+            util.FXUtility.loadPage("ucr.lab.HelloApplication", "registerGetPrev.fxml", bp);
+        }else {
+            alert.setContentText("The registration list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     @javafx.fxml.FXML
     public void sortByIdOnAction(ActionEvent actionEvent) throws ListException {
-        if(tableViewIsNotEmpty()) {
-            this.registerList.sortById();
-            util.Utility.setRegisterList(this.registerList);
-            alert.setContentText("The registration list was sorted by Id");
-            alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.showAndWait();
-        }
-        else {
+        if (tableViewIsNotEmpty()) {
+            try {
+                // Llamamos al método sortById de la lista enlazada
+                registerList.sortById();  // Aquí estamos llamando al sortById de DoublyLinkedList
+
+                // Actualizamos la lista en la interfaz
+                util.Utility.setRegisterList(this.registerList);
+
+                // Mostramos un mensaje de éxito
+                alert.setContentText("The registration list was sorted by Id");
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.showAndWait();
+
+                // Actualizamos la TableView para reflejar la lista ordenada
+                this.courseRegistrationTableview.getItems().clear(); // Limpiamos la tabla
+                for (int i = 1; i <= registerList.size(); i++) {
+                    this.courseRegistrationTableview.getItems().add((Register) registerList.getNode(i).data);
+                }
+            } catch (ListException e) {
+                alert.setContentText("Error while sorting: " + e.getMessage());
+                alert.setAlertType(Alert.AlertType.ERROR);
+                alert.showAndWait();
+            }
+        } else {
             alert.setContentText("The registration list is empty");
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.showAndWait();
@@ -172,7 +199,13 @@ public class RegisterController
 
     @javafx.fxml.FXML
     public void getNextOnAction(ActionEvent actionEvent) {
-        util.FXUtility.loadPage("ucr.lab.HelloApplication", "registerGetNext.fxml", bp);
+        if (tableViewIsNotEmpty()){
+            util.FXUtility.loadPage("ucr.lab.HelloApplication", "registerGetNext.fxml", bp);
+        }else {
+            alert.setContentText("The registration list is empty");
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
     }
 
     // verificacion de contenido en el TableView

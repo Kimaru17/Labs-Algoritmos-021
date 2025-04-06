@@ -52,8 +52,8 @@ public class Student implements Person{
 
     @Override
     public String toString() {
-       return "Student {" + "id=" + id + ", name=" + name
-               + ", age=" + age + ", study hours="+studyHours()
-               +", address="+address+'}';
+       return  id + ", " + name
+               + ", " + age +
+               ", "+address;
     }
 }

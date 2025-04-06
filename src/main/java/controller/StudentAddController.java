@@ -34,30 +34,45 @@ public class StudentAddController
 
     @javafx.fxml.FXML
     public void addOnAction(ActionEvent actionEvent) throws ListException {
-        if (StudentIsValid()){
 
+        if (StudentIsValid()) {
+            String studentId = this.tf_studentId.getText();
+            boolean idExists = false;
+            if (!studentList.isEmpty()) {
+                for (int i = 1; i <= studentList.size(); i++) {
+                    Student existingStudent = (Student) studentList.getNode(i).data;
+                    if (existingStudent.getId().equals(studentId)) {
+                        idExists = true;
+                        break;
+                    }
+                }
+            }
+            if (idExists) {
+                alert.setContentText("The student Id is already registered ");
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.showAndWait();
+                return;
+            }
             Student student = new Student(
                     this.tf_studentId.getText(),
                     this.tf_name.getText(),
                     Integer.parseInt(this.tf_age.getText()),
                     this.tf_address.getText()
             );
-
             this.studentList.add(student);
             util.Utility.setStudentList(this.studentList);
-
             alert.setContentText("The student was added successfully");
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.showAndWait();
 
-        } else{
+        } else {
             alert.setContentText("The student can't be added successfully");
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.showAndWait();
         }
     }
 
-    @javafx.fxml.FXML
+        @javafx.fxml.FXML
     public void cleanOnAction(ActionEvent actionEvent) {
         this.tf_studentId.setText("");
         this.tf_name.setText("");
